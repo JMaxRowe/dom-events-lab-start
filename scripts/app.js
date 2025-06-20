@@ -3,7 +3,14 @@
 // * Hint 1: If you have added the class correctly, you should see the circle turn red, and it should pulse.
 // * Hint 2: When you click the button again, it should go back to being an outline of a circle.
 
+const toggleButton = document.querySelector("#toggle");
+const circleDiv = document.querySelector(".circle")
 
+const toggle = () => {
+    circleDiv.classList.toggle("pulse")
+}
+
+toggleButton.addEventListener("click", toggle)
 
 
 
