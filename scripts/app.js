@@ -18,7 +18,14 @@ toggleButton.addEventListener("click", toggle)
 // Add a 'change' event listener to the "cities" select element
 // When a city is selected, the value of the selected city option should be inserted into the "city" span element
 
+const cityList = document.querySelector("#cities")
+const citySpan = document.querySelector("#city")
 
+const insertCity = () => {
+    citySpan.textContent = cityList.value
+}
+
+cityList.addEventListener("change", insertCity)
 
 
 
@@ -27,6 +34,19 @@ toggleButton.addEventListener("click", toggle)
 
 // Part Two: Add event listeners to each of the divs with the class of "name", so that when the mouse leaves any of the divs, the span with the id of "current" is empty.
 
+const nameIs = document.querySelectorAll(".name")
+const currentName = document.querySelector("#current")
+
+const nameAppear = (e) => {
+    currentName.textContent = e.target.textContent;
+}
+const nameRemove = () => {
+    currentName.textContent = "";
+}
+nameIs.forEach(nameElement => {
+    nameElement.addEventListener("mouseover", nameAppear);
+    nameElement.addEventListener ("mouseleave", nameRemove);
+})
 
 
 
@@ -38,7 +58,14 @@ toggleButton.addEventListener("click", toggle)
 // * Hint 1: If you have added the class correctly, you should see that the button has an opacity of 0.8. 
 // * Hint 2: You will need to prevent the default behaviour of the form in order to stop the page from refreshing before the changes are made.
 
+const submitForm = document.querySelector("#subscribe");
+const submitButton = document.querySelector(".submit")
 
+submitForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    submitButton.classList.add("submitted")
+    submitButton.textContent = "Submitted!"
+})
 
 
 // ? BONUS Task 5
@@ -46,3 +73,13 @@ toggleButton.addEventListener("click", toggle)
 // If it is greater than 40, add the class "fadeOutUp" to the <h1> tag. 
 // If it is less than 40, remove the class "fadeOutUp" from the <h1> tag. 
 // * Hint: As you scroll, you should see the <h1> tag fade out. If you scroll back down, it will reappear.
+
+const h1 = document.querySelector("h1")
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 40){
+    h1.classList.add("animated", "fadeOutUp")
+}
+else if (window.scrollY < 40) {
+    h1.classList.remove("animated", "fadeOutUp")
+}})
